@@ -26,6 +26,15 @@ class Test {
     }
 
     @Test
+    fun `city can be found by city id`() {
+        val cityId = "2643743"
+        weatherService.getByCityId(cityId).apply {
+            assertThat(cityName).isEqualTo("London")
+            assertThat(sys.countryCode).isEqualTo("GB")
+        }
+    }
+
+    @Test
     fun `no results are returned if non existent city is entered`() {
         val result = weatherService.getByCityName(queryString = "Abcdef")
         assertThat(result).isNull()
