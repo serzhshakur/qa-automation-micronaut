@@ -15,7 +15,7 @@ class Test {
     @Test
     fun `city can be found by exact name`() {
         val city = "Riga"
-        weatherService.retrieveWeather(queryString = city).apply {
+        weatherService.getByCityName(queryString = city).apply {
             assertThat(cityName).isEqualTo(city)
             assertThat(sys.countryCode).isEqualTo("LV")
             assertThat(coordinates.lat).isEqualTo(56.95)
@@ -27,7 +27,7 @@ class Test {
 
     @Test
     fun `no results are returned if non existent city is entered`() {
-        val result = weatherService.retrieveWeather(queryString = "Abcdef")
+        val result = weatherService.getByCityName(queryString = "Abcdef")
         assertThat(result).isNull()
     }
 }
