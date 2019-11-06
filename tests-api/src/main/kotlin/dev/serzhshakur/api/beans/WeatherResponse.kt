@@ -6,6 +6,7 @@ data class WeatherResponse(
     val weather: List<Weather>,
     val wind: Wind,
     val main: Main,
+    val sys: Sys,
     @field:JsonProperty("coord") val coordinates: Coordinates,
     @field:JsonProperty("name") val cityName: String
 )
@@ -26,4 +27,8 @@ data class Weather(
 
 data class Wind(
     val speed: Double
+)
+
+data class Sys(
+    @field:JsonProperty("country") val countryCode: String
 )
