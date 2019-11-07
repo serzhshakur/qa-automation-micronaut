@@ -5,7 +5,7 @@ plugins {
     kotlin("jvm") version "1.3.50"
     kotlin("kapt") version "1.3.50"
     id("io.qameta.allure") version "2.8.1"
-    id("com.diffplug.gradle.spotless") version "3.23.1"
+    id("com.diffplug.gradle.spotless") version "3.25.0"
     id("io.spring.dependency-management") version "1.0.8.RELEASE"
 }
 
@@ -77,11 +77,11 @@ configure<SpotlessExtension> {
     }
     kotlin {
         target("*/src/**/*.kt")
-        ktlint("0.33.0")
+        ktlint("0.35.0")
     }
     kotlinGradle {
         target("**/*gradle.kts")
-        ktlint("0.33.0")
+        ktlint("0.35.0")
     }
 }
 
