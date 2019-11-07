@@ -1,4 +1,4 @@
-package dev.serzhshakur
+package dev.serzhshakur.web
 
 import com.codeborne.selenide.Selenide
 import io.micronaut.test.annotation.MicronautTest
