@@ -39,7 +39,6 @@ allprojects {
 
     dependencies {
         api("io.micronaut:micronaut-runtime:1.1.4")
-        api("io.micronaut:micronaut-http-client:1.1.4")
         api("io.micronaut:micronaut-inject:1.1.4")
         api("ch.qos.logback:logback-classic:1.2.3")
         api("com.fasterxml.jackson.module:jackson-module-kotlin:2.9.8")
@@ -48,7 +47,6 @@ allprojects {
         testImplementation("org.junit.jupiter:junit-jupiter:5.4.2")
         testImplementation("io.micronaut.test:micronaut-test-junit5:1.1.1")
         testImplementation("io.micronaut.test:micronaut-test-junit5:1.1.1")
-        testImplementation("org.assertj:assertj-core:3.11.1")
     }
 
     tasks.test {
@@ -56,6 +54,19 @@ allprojects {
         testLogging {
             events("passed", "skipped", "failed")
         }
+    }
+}
+
+project(":tests-api") {
+    dependencies {
+        api("io.micronaut:micronaut-http-client:1.1.4")
+        testImplementation("org.assertj:assertj-core:3.11.1")
+    }
+}
+
+project(":tests-web") {
+    dependencies {
+        implementation("com.codeborne:selenide:5.5.0")
     }
 }
 
