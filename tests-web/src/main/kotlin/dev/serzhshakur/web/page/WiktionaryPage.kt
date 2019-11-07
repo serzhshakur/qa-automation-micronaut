@@ -11,7 +11,7 @@ import dev.serzhshakur.web.tools.anyHasText
 import javax.inject.Singleton
 
 @Singleton
-class Page {
+class WiktionaryPage {
 
     private val searchInput: SelenideElement = `$`(".bodySearchWrap [name='search']")
     private val submitButton: SelenideElement = `$`(".bodySearchWrap [type='submit']")
