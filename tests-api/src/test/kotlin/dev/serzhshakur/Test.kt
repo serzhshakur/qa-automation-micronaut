@@ -13,24 +13,50 @@ class Test {
     private lateinit var weatherService: WeatherService
 
     @Test
-    fun `city can be found by exact name`() {
+    fun `weather data can be found by city name`() {
         val city = "Riga"
         weatherService.getByCityName(queryString = city).apply {
             assertThat(cityName).isEqualTo(city)
             assertThat(sys.countryCode).isEqualTo("LV")
             assertThat(coordinates.lat).isEqualTo(56.95)
             assertThat(coordinates.lon).isEqualTo(24.11)
-            assertThat(wind.speed).isGreaterThan(0.0)
+            assertThat(wind.speed).isGreaterThanOrEqualTo(0.0)
             assertThat(main.temp).isBetween(-35.0, 35.0)
         }
     }
 
     @Test
-    fun `city can be found by city id`() {
-        val cityId = "2643743"
+    fun `weather data can be found by coordinates`() {
+        val lat = 56.95
+        val lon = 24.11
+        val result = weatherService.getByCoordinates(
+            latitude = lat,
+            longitude = lon
+        )
+        result.apply {
+            assertThat(cityName).isEqualTo("Vecrīga")
+            assertThat(sys.countryCode).isEqualTo("LV")
+            assertThat(coordinates.lat).isEqualTo(lat)
+            assertThat(coordinates.lon).isEqualTo(lon)
+        }
+    }
+
+    @Test
+    fun `weather data can be found by city id`() {
+        val cityId = "456172"
         weatherService.getByCityId(cityId).apply {
-            assertThat(cityName).isEqualTo("London")
-            assertThat(sys.countryCode).isEqualTo("GB")
+            assertThat(this.cityId).isEqualTo(cityId)
+            assertThat(cityName).isEqualTo("Riga")
+            assertThat(sys.countryCode).isEqualTo("LV")
+        }
+    }
+
+    @Test
+    fun `weather data can be found by zip code`() {
+        val zipWithCountry = listOf("50001", "es")
+        weatherService.getByZipCode(zipWithCountry).apply {
+            assertThat(cityName).isEqualTo("Zaragoza")
+            assertThat(sys.countryCode).isEqualTo("ES")
         }
     }
 

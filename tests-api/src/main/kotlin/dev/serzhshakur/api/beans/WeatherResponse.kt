@@ -8,7 +8,8 @@ data class WeatherResponse(
     val main: Main,
     val sys: Sys,
     @field:JsonProperty("coord") val coordinates: Coordinates,
-    @field:JsonProperty("name") val cityName: String
+    @field:JsonProperty("name") val cityName: String,
+    @field:JsonProperty("id") val cityId: String
 )
 
 data class Main(

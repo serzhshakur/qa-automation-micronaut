@@ -14,7 +14,8 @@ class AuthFilter(
     @Value("\${api.owm.key}") val key: String
 ) : HttpClientFilter {
 
-    override fun doFilter(request: MutableHttpRequest<*>, chain: ClientFilterChain): Publisher<out HttpResponse<*>> {
+    override fun doFilter(request: MutableHttpRequest<*>, chain: ClientFilterChain)
+            : Publisher<out HttpResponse<*>> {
         val uri = UriBuilder.of(request.uri)
             .queryParam("APPID", key)
             .queryParam("units", "metric")

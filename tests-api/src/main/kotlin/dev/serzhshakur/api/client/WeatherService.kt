@@ -18,12 +18,17 @@ interface WeatherService {
 
     @Get
     fun getByCoordinates(
-        @QueryValue("lat") latitude: String,
-        @QueryValue("lon") longitude: String
+        @QueryValue("lat") latitude: Double,
+        @QueryValue("lon") longitude: Double
     ): WeatherResponse
 
     @Get
     fun getByCityId(
         @QueryValue("id") cityId: String
+    ): WeatherResponse
+
+    @Get
+    fun getByZipCode(
+        @QueryValue("zip") zip: List<String>
     ): WeatherResponse
 }
