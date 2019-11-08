@@ -1,0 +1,8 @@
+language: java
+jdk: openjdk11
+
+addons:
+  chrome: stable
+  firefox: latest
+
+script: ./gradlew clean test
