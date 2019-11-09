@@ -7,9 +7,10 @@ addons:
 
 jobs:
   include:
-    - stage: test
+    - stage: Tests
+      name: Openweather API tests
       script: ./gradlew clean testApi -DapiToken=$API_TOKEN
-    - #
+    - name: Wictionary WEB tests using Chrome browser
       script: ./gradlew clean testWeb -Dbrowser=chrome -Dheadless=true
-    - #
+    - name: Wictionary WEB tests using Firefox browser
       script: ./gradlew clean testWeb -Dbrowser=firefox -Dheadless=true
