@@ -49,12 +49,6 @@ allprojects {
         testImplementation("io.micronaut.test:micronaut-test-junit5:1.1.1")
     }
 
-    tasks.test {
-        useJUnitPlatform()
-        testLogging {
-            events("passed", "skipped", "failed")
-        }
-    }
 }
 
 project(":tests-api") {
@@ -62,11 +56,38 @@ project(":tests-api") {
         api("io.micronaut:micronaut-http-client:1.1.4")
         testImplementation("org.assertj:assertj-core:3.11.1")
     }
+
+    task<Test>("testApi") {
+        useJUnitPlatform {
+            filter {
+                includeTestsMatching("dev.serzhshakur.api.*")
+            }
+        }
+        testLogging {
+            events("passed", "skipped", "failed")
+        }
+    }
 }
 
 project(":tests-web") {
     dependencies {
         implementation("com.codeborne:selenide:5.5.0")
+    }
+
+    task<Test>("testWeb") {
+        systemProperties(
+            "selenide.headless" to (System.getProperty("headless") ?: "false"),
+            "selenide.browser" to (System.getProperty("browser") ?: "chrome")
+        )
+
+        useJUnitPlatform {
+            filter {
+                includeTestsMatching("dev.serzhshakur.web.*")
+            }
+        }
+        testLogging {
+            events("passed", "skipped", "failed")
+        }
     }
 }
 

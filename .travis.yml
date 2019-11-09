@@ -5,4 +5,11 @@ addons:
   chrome: stable
   firefox: latest
 
-script: ./gradlew clean test
+jobs:
+  include:
+    - stage: test
+      script: ./gradlew clean testApi
+    - #
+      script: ./gradlew clean testWeb -Dbrowser=chrome -Dheadless=true
+    - #
+      script: ./gradlew clean testWeb -Dbrowser=firefox -Dheadless=true

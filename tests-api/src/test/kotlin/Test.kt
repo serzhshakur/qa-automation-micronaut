@@ -1,12 +1,14 @@
-package dev.serzhshakur
+package dev.serzhshakur.api
 
 import dev.serzhshakur.api.client.WeatherService
 import io.micronaut.test.annotation.MicronautTest
-import javax.inject.Inject
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import javax.inject.Inject
 
 @MicronautTest
+@DisplayName("Open Weather search functionality")
 class Test {
 
     @Inject
