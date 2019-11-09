@@ -1,4 +1,5 @@
 import com.diffplug.gradle.spotless.SpotlessExtension
+import io.qameta.allure.gradle.AllureExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -9,9 +10,12 @@ plugins {
     id("io.spring.dependency-management") version "1.0.8.RELEASE"
 }
 
+val micronautVersion = "1.2.6"
+val allureVersion = "2.13.0"
+
 dependencyManagement {
     imports {
-        mavenBom("io.micronaut:micronaut-bom:1.2.6")
+        mavenBom("io.micronaut:micronaut-bom:$micronautVersion")
     }
 }
 
@@ -20,6 +24,7 @@ allprojects {
     apply(plugin = "kotlin-kapt")
     apply(plugin = "checkstyle")
     apply(plugin = "java-library")
+    apply(plugin = "io.qameta.allure")
 
     java {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -38,21 +43,28 @@ allprojects {
     }
 
     dependencies {
-        api("io.micronaut:micronaut-runtime:1.2.6")
-        api("io.micronaut:micronaut-inject:1.2.6")
+        api("io.micronaut:micronaut-runtime:$micronautVersion")
+        api("io.micronaut:micronaut-inject:$micronautVersion")
         api("ch.qos.logback:logback-classic:1.2.3")
         api("com.fasterxml.jackson.module:jackson-module-kotlin:2.9.8")
-        kapt("io.micronaut:micronaut-inject-java:1.2.6")
-        kaptTest("io.micronaut:micronaut-inject-java:1.2.6")
+        kapt("io.micronaut:micronaut-inject-java:$micronautVersion")
+        kaptTest("io.micronaut:micronaut-inject-java:$micronautVersion")
         testImplementation("org.junit.jupiter:junit-jupiter:5.5.2")
         testImplementation("io.micronaut.test:micronaut-test-junit5:1.1.2")
     }
 
+    configure<AllureExtension> {
+        version = allureVersion
+        resultsDir = file("$rootDir/build/allure-results")
+        useJUnit5 {
+            version = allureVersion
+        }
+    }
 }
 
 project(":tests-api") {
     dependencies {
-        api("io.micronaut:micronaut-http-client:1.2.6")
+        api("io.micronaut:micronaut-http-client:$micronautVersion")
         testImplementation("org.assertj:assertj-core:3.11.1")
     }
 
@@ -74,6 +86,7 @@ project(":tests-api") {
 project(":tests-web") {
     dependencies {
         implementation("com.codeborne:selenide:5.5.0")
+        implementation("io.qameta.allure:allure-selenide:$allureVersion")
     }
 
     task<Test>("testWeb") {
