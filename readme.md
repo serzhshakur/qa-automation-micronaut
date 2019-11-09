@@ -98,3 +98,11 @@ This project has integration with travis-ci so each time a new code is pushed to
 
 The current state of a build is [![Build Status](https://travis-ci.org/serzhshakur/qa-automation-micronaut.svg?branch=master)](https://travis-ci.org/serzhshakur/qa-automation-micronaut)
 . You can also see the current status at a top of this readme. A stable Chrome version and latest Firefox version in a headless mode are used for running tests on CI.
+
+## Allure reports
+After tests have been executed you can generate a pretty Allure reports using the following gradle commands:
+```$xslt
+./gradlew allureReport
+./gradlew allureServe
+```
+A report will open in your default browser automatically.
