@@ -39,8 +39,8 @@ This is a tests automation project that consists of two modules
                             └── Test.kt
 
 ```
-- API tests are located in `tests-api/src/test/kotlin/dev/serzhshakur/api/Test.kt`
-- WEB tests are located in `tests-web/src/test/kotlin/dev/serzhshakur/web/Test.kt`
+- API tests are located under `tests-api/src/test/kotlin/dev/serzhshakur/api/`
+- WEB tests are located under `tests-web/src/test/kotlin/dev/serzhshakur/web/`
 
 #### Operating systems' support
 - Linux
@@ -51,12 +51,9 @@ This is a tests automation project that consists of two modules
 - Chrome
 - Firefox
 
-To set browser change `driver.name` property under _$projectDir/src/main/resources/test.properties_.
-By default **Chrome** in headless mode is used.
-
 ## Tests execution
 
-#### IntelliJ Idea
+### IntelliJ Idea
 
 As Micronaut is used in this project you need to enable annotation processing in IntelliJ Idea (look [here](https://guides.micronaut.io/creating-your-first-micronaut-app/guide/) for more details): 
 - Go to _File > Settings > Build, Execution, Deployment > Compiler > Annotation Processors_ 
@@ -71,10 +68,10 @@ To run a tests from IntelliJ IDEA
 ##### APPID for Open Weather API
 You need a valid APPID for Open Weather API. Check [here](https://openweathermap.org/appid) how to get one.
 In order to globally set your APPID in IntelliJ do the following:
-- Run > Edit Configurations > Templates > Gradle
-- Add `-DapiToken={your_appid}` to `VM Options` 
+- _Run > Edit Configurations > Templates > Gradle_
+- Add `-DapiToken={your_appid}` to _"VM Options"_ 
 
-#### Command line
+### Command line
 
 To run test from command line use the following Gradle command
 
@@ -94,7 +91,7 @@ To run test from command line use the following Gradle command
 For Windows machines you must run  `gradlew.bat` instead
 
 ### Travis CI
-This project has integration with travis-ci so each time a new code is pushed to repo a pipeline on Travis is automatically triggered and the following tests are executed
+This project has integration with travis-ci so each time a new code is pushed to repo a [pipeline run on Travis](https://travis-ci.org/serzhshakur/qa-automation-micronaut) is automatically triggered and the following tests are executed
 - _Openweather API tests_
 - _Wiktionary WEB tests using Chrome browser_
 - _Wiktionary WEB tests using Firefox browser_
