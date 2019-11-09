@@ -11,7 +11,7 @@ import org.reactivestreams.Publisher
 
 @Filter("/data/**")
 class AuthFilter(
-    @Value("\${api.owm.key}") val key: String
+    @Value("\${api.openweather.token}") val key: String
 ) : HttpClientFilter {
 
     override fun doFilter(request: MutableHttpRequest<*>, chain: ClientFilterChain):

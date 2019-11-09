@@ -8,7 +8,7 @@ addons:
 jobs:
   include:
     - stage: test
-      script: ./gradlew clean testApi
+      script: ./gradlew clean testApi -DapiToken=$API_TOKEN
     - #
       script: ./gradlew clean testWeb -Dbrowser=chrome -Dheadless=true
     - #

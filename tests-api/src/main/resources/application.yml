@@ -2,7 +2,7 @@ micronaut:
   application:
     name: autotests
 api:
-  owm:
+  openweather:
     url: https://api.openweathermap.org
     path: /data/2.5/weather
-    key: 'fe9ba136998b5433f6a4cf971cac002d'
+    token: ''

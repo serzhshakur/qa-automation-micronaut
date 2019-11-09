@@ -6,8 +6,8 @@ import io.micronaut.http.annotation.QueryValue
 import io.micronaut.http.client.annotation.Client
 
 @Client(
-    value = "\${api.owm.url}",
-    path = "\${api.owm.path}"
+    value = "\${api.openweather.url}",
+    path = "\${api.openweather.path}"
 )
 interface WeatherService {
 

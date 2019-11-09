@@ -58,6 +58,9 @@ project(":tests-api") {
     }
 
     task<Test>("testApi") {
+        systemProperties(
+            "api.openweather.token" to System.getProperty("apiToken")
+        )
         useJUnitPlatform {
             filter {
                 includeTestsMatching("dev.serzhshakur.api.*")
