@@ -2,6 +2,7 @@ package dev.serzhshakur.web
 
 import dev.serzhshakur.web.page.WiktionaryPage
 import io.micronaut.test.annotation.MicronautTest
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS
 import org.junit.jupiter.params.ParameterizedTest
@@ -12,12 +13,13 @@ import javax.inject.Inject
 
 @MicronautTest
 @TestInstance(PER_CLASS)
+@DisplayName("Wiktionary search")
 class Test {
 
     @Inject
     private lateinit var wiktionaryPage: WiktionaryPage
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "searching for {0}")
     @MethodSource("testData")
     fun `searching for various terms`(scenario: Scenario) {
         wiktionaryPage.apply {

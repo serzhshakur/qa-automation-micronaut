@@ -11,7 +11,7 @@ plugins {
 
 dependencyManagement {
     imports {
-        mavenBom("io.micronaut:micronaut-bom:1.1.4")
+        mavenBom("io.micronaut:micronaut-bom:1.2.6")
     }
 }
 
@@ -38,22 +38,21 @@ allprojects {
     }
 
     dependencies {
-        api("io.micronaut:micronaut-runtime:1.1.4")
-        api("io.micronaut:micronaut-inject:1.1.4")
+        api("io.micronaut:micronaut-runtime:1.2.6")
+        api("io.micronaut:micronaut-inject:1.2.6")
         api("ch.qos.logback:logback-classic:1.2.3")
         api("com.fasterxml.jackson.module:jackson-module-kotlin:2.9.8")
-        kapt("io.micronaut:micronaut-inject-java:1.1.4")
-        kaptTest("io.micronaut:micronaut-inject-java:1.1.4")
-        testImplementation("org.junit.jupiter:junit-jupiter:5.4.2")
-        testImplementation("io.micronaut.test:micronaut-test-junit5:1.1.1")
-        testImplementation("io.micronaut.test:micronaut-test-junit5:1.1.1")
+        kapt("io.micronaut:micronaut-inject-java:1.2.6")
+        kaptTest("io.micronaut:micronaut-inject-java:1.2.6")
+        testImplementation("org.junit.jupiter:junit-jupiter:5.5.2")
+        testImplementation("io.micronaut.test:micronaut-test-junit5:1.1.2")
     }
 
 }
 
 project(":tests-api") {
     dependencies {
-        api("io.micronaut:micronaut-http-client:1.1.4")
+        api("io.micronaut:micronaut-http-client:1.2.6")
         testImplementation("org.assertj:assertj-core:3.11.1")
     }
 
