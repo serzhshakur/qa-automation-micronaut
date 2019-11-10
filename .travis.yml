@@ -1,16 +1,16 @@
 language: java
 jdk: openjdk11
 
-addons:
-  chrome: stable
-  firefox: latest
-
 jobs:
   include:
     - stage: Tests
       name: Openweather API tests
       script: ./gradlew clean testApi -DapiToken=$API_TOKEN
     - name: Wiktionary WEB tests using Chrome browser
+      addons:
+        chrome: stable
       script: ./gradlew clean testWeb -Dbrowser=chrome -Dheadless=true
     - name: Wiktionary WEB tests using Firefox browser
+      addons:
+        firefox: latest
       script: ./gradlew clean testWeb -Dbrowser=firefox -Dheadless=true
