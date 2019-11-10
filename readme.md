@@ -23,10 +23,10 @@ This is a tests automation project that consists of two modules
 │       │   ├── ...
 │       └── test
 │           └── kotlin
-│               ├── dev
-│               │   └── serzhshakur
-│               │       └── api
-│               └── Test.kt
+│               └── dev
+│                   └── serzhshakur
+│                       └── api
+│                           └── Test.kt
 └── tests-web
     └── src
         ├── main
