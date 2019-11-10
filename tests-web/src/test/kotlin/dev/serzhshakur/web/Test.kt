@@ -25,8 +25,13 @@ class Test {
     fun `searching for various terms`(scenario: Scenario) {
         wiktionaryPage.apply {
             open()
-            search(scenario.searchTerm)
-            checkResultsHaveText(scenario.expectedResult)
+            searchBar {
+                enterText(scenario.searchTerm)
+                submit()
+            }
+            results {
+                anyContainsText(scenario.expectedResult)
+            }
         }
     }
 }

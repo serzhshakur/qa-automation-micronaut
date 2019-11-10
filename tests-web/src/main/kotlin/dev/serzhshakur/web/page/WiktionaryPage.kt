@@ -1,6 +1,5 @@
 package dev.serzhshakur.web.page
 
-import com.codeborne.selenide.Condition.visible
 import com.codeborne.selenide.ElementsCollection
 import com.codeborne.selenide.Selectors.byXpath
 import com.codeborne.selenide.Selenide
@@ -13,25 +12,39 @@ import javax.inject.Singleton
 @Singleton
 class WiktionaryPage {
 
-    private val searchInput: SelenideElement = `$`(".bodySearchWrap [name='search']")
-    private val submitButton: SelenideElement = `$`(".bodySearchWrap [type='submit']")
-    private val meanings: ElementsCollection = `$$`(byXpath("//*[@id='Noun']/ancestor::h3/following::ol[1]/li"))
-
     fun open() {
         Selenide.open("https://en.wiktionary.org/")
-        searchInput.shouldBe(visible)
-        submitButton.shouldBe(visible)
     }
 
-    fun search(searchTerm: String) {
-        searchInput.apply {
-            clear()
-            value = searchTerm
+    fun searchBar(closure: SearchBar.() -> Unit) {
+        SearchBar().closure()
+    }
+
+    fun results(closure: SearchResults.() -> Unit) {
+        SearchResults().closure()
+    }
+
+    inner class SearchBar {
+        private val searchInput: SelenideElement = `$`(".bodySearchWrap [name='search']")
+        private val submitButton: SelenideElement = `$`(".bodySearchWrap [type='submit']")
+
+        fun enterText(searchTerm: String) {
+            searchInput.apply {
+                clear()
+                value = searchTerm
+            }
         }
-        submitButton.click()
+
+        fun submit() {
+            submitButton.click()
+        }
     }
 
-    fun checkResultsHaveText(text: String) {
-        meanings.shouldHave(anyHasText(text))
+    inner class SearchResults {
+        private val results: ElementsCollection = `$$`(byXpath("//*[@id='Noun']/ancestor::h3/following::ol[1]/li"))
+
+        fun anyContainsText(text: String) {
+            results.shouldHave(anyHasText(text))
+        }
     }
 }
