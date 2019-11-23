@@ -3,10 +3,10 @@ import io.qameta.allure.gradle.AllureExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.3.50"
-    kotlin("kapt") version "1.3.50"
+    kotlin("jvm") version "1.3.60"
+    kotlin("kapt") version "1.3.60"
     id("io.qameta.allure") version "2.8.1"
-    id("com.diffplug.gradle.spotless") version "3.25.0"
+    id("com.diffplug.gradle.spotless") version "3.26.0"
     id("io.spring.dependency-management") version "1.0.8.RELEASE"
 }
 
@@ -114,6 +114,7 @@ configure<SpotlessExtension> {
     kotlin {
         target("*/src/**/*.kt")
         ktlint("0.35.0")
+            .userData(mapOf("disabled_rules" to "import-ordering"))
     }
     kotlinGradle {
         target("**/*gradle.kts")
@@ -122,4 +123,4 @@ configure<SpotlessExtension> {
 }
 
 val wrapper: Wrapper by tasks
-wrapper.gradleVersion = "5.6"
+wrapper.gradleVersion = "6.0"
