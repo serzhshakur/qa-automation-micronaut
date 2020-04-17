@@ -3,14 +3,14 @@ import io.qameta.allure.gradle.AllureExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.3.60"
-    kotlin("kapt") version "1.3.60"
+    kotlin("jvm") version "1.3.72"
+    kotlin("kapt") version "1.3.72"
     id("io.qameta.allure") version "2.8.1"
     id("com.diffplug.gradle.spotless") version "3.26.0"
-    id("io.spring.dependency-management") version "1.0.8.RELEASE"
+    id("io.spring.dependency-management") version "1.0.9.RELEASE"
 }
 
-val micronautVersion = "1.2.6"
+val micronautVersion = "1.3.4"
 val allureVersion = "2.13.0"
 
 dependencyManagement {
@@ -49,8 +49,8 @@ allprojects {
         api("com.fasterxml.jackson.module:jackson-module-kotlin:2.9.8")
         kapt("io.micronaut:micronaut-inject-java:$micronautVersion")
         kaptTest("io.micronaut:micronaut-inject-java:$micronautVersion")
-        testImplementation("org.junit.jupiter:junit-jupiter:5.5.2")
-        testImplementation("io.micronaut.test:micronaut-test-junit5:1.1.2")
+        testImplementation("org.junit.jupiter:junit-jupiter:5.6.2")
+        testImplementation("io.micronaut.test:micronaut-test-junit5:1.1.5")
     }
 
     configure<AllureExtension> {
